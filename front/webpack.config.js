@@ -9,12 +9,10 @@ module.exports = (env, arg) => {
 	const mode = arg && arg.mode || 'development';
 	const entryOutput = {
 		entry: {
-			// background: './src/background/index.ts',
-			// popup: './src/popup/index.ts',
-			// options: './src/options/index.ts',
-			// canvas: './src/canvas/index.ts'
-			background: './wix/background/index.js',
-			content: './wix/content/index.js',
+			background: './src/extension/background/index.ts',
+			popup: './src/extension/popup/index.ts',
+			options: './src/extension/options/index.ts',
+			canvas: './src/three/index.ts'
 		}
 	};
 	let plugins = [];
