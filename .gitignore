@@ -1,0 +1,5 @@
+front/node_modules/
+dist/
+.idea/
+front/yarn.lock
+front/yarn-error.log
