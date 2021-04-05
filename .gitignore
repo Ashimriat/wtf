@@ -4,3 +4,6 @@ dist/
 **/package-lock.json
 front/yarn.lock
 front/yarn-error.log
+
+back/node/api/node_modules
+back/node/api/package-lock.json

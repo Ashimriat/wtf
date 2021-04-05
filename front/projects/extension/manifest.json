@@ -3,13 +3,17 @@
   "version": "1.0",
   "description": "Build an Extension!",
   "permissions": ["activeTab", "declarativeContent", "storage"],
-  "browser_action": {
-    "default_popup": "popup.html"
-  },
-  "options_page": "options.html",
+  "host_permissions": [],
+  "actions": {},
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
-  "manifest_version": 2
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "script-src 'self'"
+  },
+  "web_accessible_resources": {
+    "resources": []
+  },
+  "manifest_version": 3
 }

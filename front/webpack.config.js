@@ -18,10 +18,10 @@ export default (env, arg) => {
 	const mode = arg && arg.mode || 'development';
 	const entryOutput = {
 		entry: {
-			background: './src/extension/background/index.ts',
-			popup: './src/extension/popup/index.ts',
-			options: './src/extension/options/index.ts',
-			canvas: './src/three/index.ts'
+			background: './src/extension/background/index.js',
+			// popup: './src/extension/popup/index.ts',
+			// options: './src/extension/options/index.ts',
+			// canvas: './src/three/index.ts'
 		}
 	};
 	let plugins = [];
@@ -56,16 +56,14 @@ export default (env, arg) => {
 				}
 			}),
 			*/
-			/*
 			new CopyWebpackPlugin({
 				patterns: [
 					{
-						from: 'src/wix/manifest.json',
+						from: 'manifest.json',
 						context: __dirname
 					}
 				]
-			}) */
-			
+			})
 			/*
 			new CopyWebpackPlugin({
 				patterns: [
