@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chrome": "^0.0.123"s
+    "@types/chrome": "^0.0.123"
   }
 }

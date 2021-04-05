@@ -1,3 +1,5 @@
+// import chromeApi from "../chromeHolder";
+
 /*
 chrome.alarms.create('alarmName', {
   periodInMinutes: 10, //  будет запускать раз в указанный период времени после стартового запуска
@@ -5,7 +7,7 @@ chrome.alarms.create('alarmName', {
   delayInMinutes: 1, // либо минут
   // when: 1251290 // либо миллисекунд
 });
-
+*/
 chrome.runtime.onInstalled.addListener(async () => {
   // await chromeApi.storage.sync.set({ color: '#3aa757' });
   console.log('The color is green');
@@ -15,13 +17,11 @@ chrome.runtime.onInstalled.addListener(async () => {
       conditions: [
         new chrome.declarativeContent.PageStateMatcher({
           pageUrl: { hostEquals: 'developer.chrome.com' },
-        })
+        }),
       ],
       actions: [
         new chrome.declarativeContent.ShowPageAction()
-      ]
-    }
+      ],
+    },
   ]);
-}); */
-
-console.log('1');
+});

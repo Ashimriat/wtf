@@ -2,8 +2,5 @@ dist/
 .idea/
 **/node_modules
 **/package-lock.json
-front/yarn.lock
-front/yarn-error.log
-
-back/node/api/node_modules
-back/node/api/package-lock.json
+**/yarn.lock
+**/yarn-error.log
