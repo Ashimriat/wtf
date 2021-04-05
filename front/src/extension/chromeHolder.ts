@@ -68,5 +68,4 @@ class Chrome {
   };
 }
 
-const chromeApi = new Chrome();
-export default chromeApi;
+export default new Chrome();

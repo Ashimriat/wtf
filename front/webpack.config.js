@@ -1,7 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
@@ -9,10 +6,10 @@ module.exports = (env, arg) => {
 	const mode = arg && arg.mode || 'development';
 	const entryOutput = {
 		entry: {
-			background: './src/extension/background/index.ts',
-			popup: './src/extension/popup/index.ts',
-			options: './src/extension/options/index.ts',
-			canvas: './src/three/index.ts'
+			background: './src/extension/background/index.js',
+			// popup: './src/extension/popup/index.ts',
+			// options: './src/extension/options/index.ts',
+			// canvas: './src/three/index.ts'
 		}
 	};
 	let plugins = [];
@@ -48,16 +45,14 @@ module.exports = (env, arg) => {
 				}
 			}),
 			*/
-			/*
 			new CopyWebpackPlugin({
 				patterns: [
 					{
-						from: 'src/wix/manifest.json',
+						from: 'manifest.json',
 						context: __dirname
 					}
 				]
-			}) */
-			
+			})
 			/*
 			new CopyWebpackPlugin({
 				patterns: [
@@ -68,17 +63,6 @@ module.exports = (env, arg) => {
 			})
 			
 			 */
-			new CopyWebpackPlugin({
-				patterns: [
-					{
-						from: './wix/assets',
-						to: 'assets'
-					},
-					{
-						from: './wix/manifest.json'
-					}
-				]
-			})
 		];
 	}
 	
@@ -88,7 +72,7 @@ module.exports = (env, arg) => {
 		resolve: {
 			extensions: ['.ts', '.tsx', '.vue', '.js',],
 		},
-		devtool: 'source-map',
+		// devtool: 'source-map',
 		module: {
 			rules: [
 				// компоненты Vue
@@ -104,6 +88,12 @@ module.exports = (env, arg) => {
 						options: {
 							appendTsSuffixTo: [/\.vue$/]
 						}
+					},
+				},
+				{
+					test: /\.js?$/,
+					use: {
+						loader: 'babel-loader',
 					},
 				},
 				// шаблоны
@@ -130,12 +120,6 @@ module.exports = (env, arg) => {
 					]
 				},
 				// тесты
-				/*
-				{
-					test: /(\.test\.js)$/,
-					exclude: /node-modules/,
-					use: 'mocha-loader'
-				} */
 			],
 		},
 		plugins
