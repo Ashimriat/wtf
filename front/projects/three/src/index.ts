@@ -2,6 +2,35 @@ import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
 
+/*
+const SCENE = new THREE.Scene();
+const CAMERA = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+const RENDERER = new THREE.WebGLRenderer();
+RENDERER.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(RENDERER.domElement);
+
+const GEOMETRY = new THREE.BoxGeometry();
+const MATERIAL = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const CUBE = new THREE.Mesh(GEOMETRY, MATERIAL);
+SCENE.add(CUBE);
+
+CAMERA.position.z = 5;
+
+const animate = () => {
+  requestAnimationFrame(animate);
+
+  CUBE.rotation.x += 0.01;
+  CUBE.rotation.y += 0.01;
+
+  RENDERER.render(SCENE, CAMERA);
+};
+animate();
+*/
 
 document.body.style.padding = '0';
 document.body.style.margin = '0';
