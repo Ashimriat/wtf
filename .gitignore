@@ -1,6 +1,7 @@
-front/node_modules/
 dist/
 .idea/
+**/node_modules
+**/package-lock.json
 front/yarn.lock
 front/yarn-error.log
 

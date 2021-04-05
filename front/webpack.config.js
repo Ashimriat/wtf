@@ -1,8 +1,20 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+import path from "node:path";
+import ESLintWebpackPlugin from "eslint-webpack-plugin";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 
-module.exports = (env, arg) => {
+export default {
+	plugins: [
+		new ESLintWebpackPlugin({
+			extensions: ['.js', '.ts']
+		})
+	]
+}
+
+/*
+export default (env, arg) => {
 	const mode = arg && arg.mode || 'development';
 	const entryOutput = {
 		entry: {
@@ -23,7 +35,6 @@ module.exports = (env, arg) => {
 		
 		plugins = [
 			/*
-			new VueLoaderPlugin(),
 			new HtmlWebpackPlugin({
 				title: 'Options',
 				filename: 'options.html',
@@ -61,67 +72,7 @@ module.exports = (env, arg) => {
 					}
 				]
 			})
-			
-			 */
 		];
 	}
-	
-	return {
-		...entryOutput,
-		mode,
-		resolve: {
-			extensions: ['.ts', '.tsx', '.vue', '.js',],
-		},
-		// devtool: 'source-map',
-		module: {
-			rules: [
-				// компоненты Vue
-				{
-					test: /\.vue$/,
-					use: 'vue-loader',
-				},
-				// код
-				{
-					test: /\.tsx?$/,
-					use: {
-						loader: 'ts-loader',
-						options: {
-							appendTsSuffixTo: [/\.vue$/]
-						}
-					},
-				},
-				{
-					test: /\.js?$/,
-					use: {
-						loader: 'babel-loader',
-					},
-				},
-				// шаблоны
-				{
-					test: /\.pug$/,
-					use: 'pug-plain-loader'
-				},
-				// стили
-				{
-					test: /\.s[ac]ss$/,
-					use: [
-						'vue-style-loader',
-						'css-loader',
-						{
-							loader: 'sass-loader',
-							options: {
-								sassOptions: {
-									indentedSyntax: true,
-									prependData: `$color: red;`
-								}
-							}
-						}
-						
-					]
-				},
-				// тесты
-			],
-		},
-		plugins
-	};
-};
+*/
+
