@@ -1,24 +1,39 @@
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 
 
-module.exports = {
-  plugins: [
-    new ESLintWebpackPlugin({
-      extensions: ['.js', '.ts'],
-    }),
-  ],
-  module: {
-    rules: {
-      tsAndTsxDev: {
-        test: /.tsx?/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-      tsAndTsxProd: {
-        test: /.tsx?/,
-        exclude: /node_modules/,
-        use: 'ts-loader',
-      },
+const CODE_LOADERS = {
+  js: 'babel-loader',
+  ts: 'ts-loader',
+};
+
+
+export default (env, args, options) => {
+  const IS_DEV = args.mode === 'development';
+
+  return {
+    mode: args.mode,
+    output: {
+      filename: '[name].js'
     },
-  },
+    plugins: [
+      new ESLintWebpackPlugin()
+    ],
+    module: {
+      rules: [
+        {
+          test: /.tsx?$/,
+          exclude: /node_modules/,
+          use: CODE_LOADERS[IS_DEV ? 'js' : 'ts'],
+        },
+        {
+          test: /.js$/,
+          exclude: file => (
+            /node_modules/.test(file) &&
+            !/\.vue\.js/.test(file)
+          ),
+          use: CODE_LOADERS.js,
+        }
+      ]
+    },
+  };
 };

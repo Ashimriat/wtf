@@ -1,10 +1,13 @@
-import path from "node:path";
-import VueLoaderPlugin from "vue-loader/lib/plugin";
+import path from 'node:path';
+import { VueLoaderPlugin } from 'vue-loader';
+import { merge } from '../../node_modules/webpack-merge/dist/index.js';
+import baseConfigCreator from '../../webpack.config.base.js';
 
 
+const __dirname = path.resolve();
 const config = {
 	entry: {
-		main: ''
+		main: path.resolve(__dirname, 'src/index.ts'),
 	},
 	resolve: {
 		extensions: ['.vue', '.ts', '.js'],
@@ -26,6 +29,5 @@ const config = {
 	}
 };
 
-export default (env, arg) => {
 
-};
+export default (env, args) => merge(baseConfigCreator(env, args), config);
