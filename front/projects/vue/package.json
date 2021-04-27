@@ -4,6 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
+    "dev:build": "node ../../node_modules/webpack/bin/webpack.js --watch --config webpack.config.js --mode development",
     "dev:server": "node ../../node_modules/webpack/bin/webpack.js serve --config webpack.config.js --mode development"
   },
   "author": "",

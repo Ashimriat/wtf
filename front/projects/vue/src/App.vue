@@ -1,8 +1,8 @@
 <template lang="pug">
 div
   Button(
-    :message="Say hello"
-    :toShow="Аллилуйя!"
+    message="Say hello"
+    toShow="Аллилуйя!"
   )
 </template>
 

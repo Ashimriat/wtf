@@ -32,8 +32,18 @@ export default (env, args, options) => {
             !/\.vue\.js/.test(file)
           ),
           use: CODE_LOADERS.js,
+        },
+        {
+          test: /.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
         }
       ]
     },
+    devServer: {
+      open: 'Chrome',
+    }
   };
 };

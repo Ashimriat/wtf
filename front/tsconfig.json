@@ -5,7 +5,7 @@
     "target": "es6",
     "jsx": "react",
     "outDir": "./dist",
-    "noImplicitAny": false, // TODO: вернуть
+    "noImplicitAny": false, 
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "sourceMap": true

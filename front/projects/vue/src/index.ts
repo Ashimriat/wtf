@@ -1,9 +1,13 @@
 import { createApp } from 'vue';
 import App from './App';
 import PrimeVue from 'primevue/config';
-import primeConfig from './config/primeui';
+import primeUiConfig from './config/primeui';
+import 'primevue/resources/themes/saga-blue/theme.css'; 
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
 
 
-const app = createApp(App, primeConfig);
-app.use(PrimeVue);
+createApp(App)
+    .use(PrimeVue, primeUiConfig)
+    .mount('#app');
     

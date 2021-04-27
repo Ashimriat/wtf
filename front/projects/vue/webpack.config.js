@@ -25,7 +25,14 @@ const config = {
 				test: /\.pug$/,
 				use: 'pug-plain-loader'
 			},
+			{
+				test: /\.(eot|svg|ttf|woff|png)$/,
+				use: 'file-loader'
+			}
 		]
+	},
+	devServer: {
+		port: 5050,
 	}
 };
 
