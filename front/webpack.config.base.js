@@ -1,6 +1,3 @@
-import ESLintWebpackPlugin from 'eslint-webpack-plugin';
-
-
 const CODE_LOADERS = {
   js: 'babel-loader',
   ts: 'ts-loader',
@@ -15,9 +12,6 @@ export default (env, args, options) => {
     output: {
       filename: '[name].js'
     },
-    plugins: [
-      new ESLintWebpackPlugin()
-    ],
     module: {
       rules: [
         {

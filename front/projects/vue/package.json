@@ -4,8 +4,11 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev:build": "node ../../node_modules/webpack/bin/webpack.js --watch --config webpack.config.js --mode development",
-    "dev:server": "node ../../node_modules/webpack/bin/webpack.js serve --config webpack.config.js --mode development"
+    "launchWebpack": "node ../../node_modules/webpack/bin/webpack.js --config=webpack.config.js",
+    "launchDevServer": "node ../../node_modules/webpack/bin/webpack.js serve --config=webpack.config.js",
+    "dev:build": "npm run launchWebpack -- --mode=development",
+    "dev:server": "npm run launchDevServer -- --mode=development",
+    "prod:build": "npm run launchWebpack -- --mode=production"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +21,7 @@
   "devDependencies": {
     "@storybook/vue3": "^6.2.9",
     "@types/vue": "^2.0.0",
+    "eslint-plugin-vue": "^7.9.0",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
     "vue-loader": "^16.0.0",

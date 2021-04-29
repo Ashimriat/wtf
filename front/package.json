@@ -11,7 +11,7 @@
     "@typescript-eslint/parser": "^4.20.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^4.3.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.25.0",
     "eslint-config-airbnb-typescript": "^10.0.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-webpack-plugin": "^2.5.3",
