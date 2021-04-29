@@ -5,11 +5,14 @@
     "target": "es6",
     "jsx": "react",
     "outDir": "./dist",
-    "noImplicitAny": false, 
+		"strict": true, 
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "sourceMap": true
   },
+	"files": [
+		"./projects/vue/vue-shims.d.ts"
+	],
   "exclude": [
     "node_modules"
   ]

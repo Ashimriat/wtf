@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import PrimeVue from 'primevue/config';
-import App from './App';
+import App from './App.vue';
 import primeUiConfig from './config/primeui';
 import 'primevue/resources/themes/saga-blue/theme.css'; 
 import 'primevue/resources/primevue.min.css';

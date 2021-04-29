@@ -7,20 +7,17 @@ div
 </template>
 
 <script lang="ts">
-  import TestButton from './components/TestButton';
+import 'reflect-metadata';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import TestButton from './components/TestButton.vue';
 
-  export default {
-    name: 'App',
-    components: { Button: TestButton },
-    data() {
-      return {
 
-      }
-    },
-    methods: {
-
-    }
-  }
+@Component({
+	components: { Button: TestButton }
+})
+export default class App extends Vue {
+	
+}
 </script>
 
 <style lang="sass" scoped>

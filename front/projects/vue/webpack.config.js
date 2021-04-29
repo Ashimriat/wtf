@@ -1,14 +1,14 @@
-import path from 'node:path';
+import ESLintWebpackPlugin from 'eslint-webpack-plugin';
+import path from 'path';
 import { VueLoaderPlugin } from 'vue-loader';
 import { merge } from '../../node_modules/webpack-merge/dist/index.js';
 import baseConfigCreator from '../../webpack.config.base.js';
-import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 
 
-const __dirname = path.resolve();
+const dirName = path.resolve();
 const staticConfig = {
 	entry: {
-		main: path.resolve(__dirname, 'src/index.ts'),
+		main: path.resolve(dirName, 'src/index.ts'),
 	},
 	resolve: {
 		extensions: ['.vue', '.ts', '.js'],
@@ -24,17 +24,17 @@ const staticConfig = {
 			},
 			{
 				test: /\.pug$/,
-				use: 'pug-plain-loader'
+				use: 'pug-plain-loader',
 			},
 			{
 				test: /\.(eot|svg|ttf|woff|png)$/,
-				use: 'file-loader'
-			}
-		]
+				use: 'file-loader',
+			},
+		],
 	},
 	devServer: {
 		port: 5050,
-	}
+	},
 };
 
 
@@ -44,14 +44,13 @@ export default async (env, args) => {
 		baseConfigCreator(env, args),
 		staticConfig,
 		{
-			plugins: [
+			plugins: IS_DEV ? [] : [
 				new ESLintWebpackPlugin({
 					files: ['src'],
 					extensions: ['vue', 'ts', 'js'],
-					// exclude: (await import('./.eslintrc.cjs')).default.ignorePatterns,
 					failOnError: true,
-					failOnWarning: !IS_DEV,
-					lintDirtyModulesOnly: !IS_DEV,
+					failOnWarning: true,
+					lintDirtyModulesOnly: false,
 					outputReport: true,
 				}),
 			],

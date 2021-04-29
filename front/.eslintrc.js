@@ -16,5 +16,9 @@ module.exports = {
     'no-tabs': 0,
     'no-trailing-spaces': 0,
     '@typescript-eslint/indent': 0
-  }
+  },
+	ignorePatterns: [
+		'./**/webpack.config.js',
+		'./**/*.d.ts'
+	]
 };

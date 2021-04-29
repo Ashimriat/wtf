@@ -1,6 +1,6 @@
 module.exports = {
 	extends: [
-		'../../.eslintrc.cjs',
+		'../../.eslintrc.js',
 		'plugin:vue/vue3-recommended',
 	],
 	parser: 'vue-eslint-parser',
@@ -9,10 +9,13 @@ module.exports = {
 	},
 	parserOptions: {
 		parser: '@typescript-eslint/parser',
+		project: '../../tsconfig.json',
+		extraFileExtensions: ['.vue'],
 		vueFeatures: {}
 	},
 	ignorePatterns: [
 		'.eslintrc.cjs',
-		'.storybook/*'
+		'.storybook/*',
+		'webpack.config.js'
 	],
 };
