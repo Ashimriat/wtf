@@ -6,23 +6,18 @@ Button(
 </template>
 
 <script lang="ts">
-import Button from 'primevue/button';
-import { Vue, Component, Prop } from 'vue-property-decorator';
 import 'reflect-metadata';
+import Button from 'primevue/button';
+import { Vue, Options, Prop } from 'vue-property-decorator';
 
 
-@Component({
-	components: { Button }
+@Options({
+	components: { Button },
 })
 export default class TestButton extends Vue {
-	@Prop({ default: '' }) toShow: string;
-	@Prop({ default: '' }) message: string;
-
-	handleClick(e) {
-		console.log(e)
-		console.log(this.toShow);
-	}
-};
+	@Prop({ default: '' }) toShow?: string;
+	@Prop({ default: '' }) message?: string;
+}
 </script>
 
 <style lang="sass" scoped>

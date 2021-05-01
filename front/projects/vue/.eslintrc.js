@@ -9,13 +9,14 @@ module.exports = {
 	},
 	parserOptions: {
 		parser: '@typescript-eslint/parser',
-		project: '../../tsconfig.json',
 		extraFileExtensions: ['.vue'],
-		vueFeatures: {}
+		project: 'tsconfig.json',
+		vueFeatures: {
+
+		},
 	},
 	ignorePatterns: [
-		'.eslintrc.cjs',
-		'.storybook/*',
-		'webpack.config.js'
+		'./.storybook/*',
+		'./vetur.config.js'
 	],
 };

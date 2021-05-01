@@ -8,16 +8,14 @@ div
 
 <script lang="ts">
 import 'reflect-metadata';
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Options } from 'vue-property-decorator';
 import TestButton from './components/TestButton.vue';
 
 
-@Component({
-	components: { Button: TestButton }
+@Options({
+	components: { Button: TestButton },
 })
-export default class App extends Vue {
-	
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="sass" scoped>

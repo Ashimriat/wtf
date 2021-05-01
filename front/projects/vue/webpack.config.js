@@ -1,20 +1,26 @@
-import ESLintWebpackPlugin from 'eslint-webpack-plugin';
-import path from 'path';
-import { VueLoaderPlugin } from 'vue-loader';
-import { merge } from '../../node_modules/webpack-merge/dist/index.js';
-import baseConfigCreator from '../../webpack.config.base.js';
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
+const { merge } = require('webpack-merge');
+const CopyPlugin = require('copy-webpack-plugin');
+const baseConfigCreator = require('../../webpack.config.base.js');
 
 
-const dirName = path.resolve();
-const staticConfig = {
+// const dirName = path.resolve();
+const repoConfig = {
 	entry: {
-		main: path.resolve(dirName, 'src/index.ts'),
+		main: path.resolve(__dirname, 'src/index.ts'),
 	},
 	resolve: {
 		extensions: ['.vue', '.ts', '.js'],
 	},
 	plugins: [
 		new VueLoaderPlugin(),
+		new CopyPlugin({
+			patterns: [
+				{ from: './src/index.html' }
+			]
+		})
 	],
 	module: {
 		rules: [
@@ -33,27 +39,13 @@ const staticConfig = {
 		],
 	},
 	devServer: {
+		contentBase: path.resolve(__dirname, 'dist'),
 		port: 5050,
 	},
 };
 
 
-export default async (env, args) => {
-	const IS_DEV = args.mode === 'development';
-	return merge(
-		baseConfigCreator(env, args),
-		staticConfig,
-		{
-			plugins: IS_DEV ? [] : [
-				new ESLintWebpackPlugin({
-					files: ['src'],
-					extensions: ['vue', 'ts', 'js'],
-					failOnError: true,
-					failOnWarning: true,
-					lintDirtyModulesOnly: false,
-					outputReport: true,
-				}),
-			],
-		},
-	);
-};
+module.exports = (env, args) => merge(
+	baseConfigCreator(env, args, { alwaysTs: true }), 
+	repoConfig
+);

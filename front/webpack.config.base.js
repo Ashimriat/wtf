@@ -1,29 +1,42 @@
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+
+
 const CODE_LOADERS = {
   js: 'babel-loader',
   ts: 'ts-loader',
 };
 
 
-export default (env, args, options) => {
+module.exports = (env, args, options) => {
   const IS_DEV = args.mode === 'development';
-	let tsCodeLoader = CODE_LOADERS[IS_DEV ? 'js' : 'ts'];
-	if (options.alwaysTs) {
-		tsCodeLoader = CODE_LOADERS.ts;
+	const isBabelLoader = IS_DEV && !options?.alwaysTs;
+	const tsLoaderUsed = {
+		loader: CODE_LOADERS[isBabelLoader ? 'js' : 'ts'],
+		options: isBabelLoader
+			? { rootMode: 'upward' }
+			: { appendTsSuffixTo: [/\.vue$/] },
 	}
   return {
     mode: args.mode,
     output: {
       filename: '[name].js',
     },
+		plugins: IS_DEV ? [] : [
+			new ESLintWebpackPlugin({
+				files: ['src'],
+				extensions: ['vue', 'ts', 'tsx', 'js', 'jsx'],
+				failOnError: true,
+				failOnWarning: true,
+				lintDirtyModulesOnly: false,
+				outputReport: true,
+			}),
+		],
     module: {
       rules: [
         {
           test: /.tsx?$/,
           exclude: /node_modules/,
-          use: {
-						loader: tsCodeLoader,
-						options: !IS_DEV ? { appendTsSuffixTo: [/\.vue$/] } : {},
-					},
+          use: tsLoaderUsed,
         },
         {
           test: /.js$/,
@@ -44,6 +57,7 @@ export default (env, args, options) => {
     },
     devServer: {
       open: 'Chrome',
+			hot: true,
     },
   };
 };
