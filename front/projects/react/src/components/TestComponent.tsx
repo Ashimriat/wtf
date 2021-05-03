@@ -1,20 +1,16 @@
 import React from 'react';
-import { Grid, Button /* , makeStyles */ } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { actions } from '../store';
-import { EAppealsActions } from "../store/reducers/appeals";
+import { EAppealsActions } from '../store/reducers/appeals';
 
-/*
-const styles = (makeStyles((theme) => ({
-
-})))();*/
 
 const TestComponent: React.FC<{}> = () => {
   const dispatch = useDispatch();
 
   return (
     <div>
-      <Button onClick={dispatch(actions[EAppealsActions.ADD])}>
+      <Button onClick={e => dispatch(actions[EAppealsActions.ADD_APPEAL]())}>
         {'Тестовая отправка'}
       </Button>
       <Grid

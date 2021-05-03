@@ -1,10 +1,18 @@
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 
 const CODE_LOADERS = {
   js: 'babel-loader',
   ts: 'ts-loader',
 };
+const BASE_PLUGINS = [
+	new CopyPlugin({
+		patterns: [
+			{ from: './src/index.html' }
+		]
+	})
+];
 
 
 module.exports = (env, args, options) => {
@@ -15,13 +23,13 @@ module.exports = (env, args, options) => {
 		options: isBabelLoader
 			? { rootMode: 'upward' }
 			: { appendTsSuffixTo: [/\.vue$/] },
-	}
+	};
   return {
-    mode: args.mode,
+    mode: args?.mode ?? 'development',
     output: {
       filename: '[name].js',
     },
-		plugins: IS_DEV ? [] : [
+		plugins: BASE_PLUGINS.concat(IS_DEV ? [] : [
 			new ESLintWebpackPlugin({
 				files: ['src'],
 				extensions: ['vue', 'ts', 'tsx', 'js', 'jsx'],
@@ -30,7 +38,7 @@ module.exports = (env, args, options) => {
 				lintDirtyModulesOnly: false,
 				outputReport: true,
 			}),
-		],
+		]),
     module: {
       rules: [
         {
@@ -41,7 +49,7 @@ module.exports = (env, args, options) => {
         {
           test: /.js$/,
           exclude: file => (
-            /node_modules/.test(file) 
+            /node_modules/.test(file)
 						&& !/\.vue\.js/.test(file)
           ),
           use: CODE_LOADERS.js,

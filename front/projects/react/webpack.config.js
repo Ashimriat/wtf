@@ -1,34 +1,30 @@
 const path = require('path');
-const {
-	module: {
-		rules: {
-			tsAndTsxProd
-		},
+const CopyPlugin = require('copy-webpack-plugin');
+const { merge } = require('webpack-merge');
+const baseConfigCreator = require('../../webpack.config.base.js');
+
+
+const repoConfig = {
+	entry: {
+		main: path.resolve(__dirname, './src/bootstrap/index.tsx'),
 	},
-} = require('../../webpack.config.base.js');
-
-
-module.exports = (env, args) => {
-	// const IS_DEV = args && args.mode === 'development';
-	
-	return {
-		mode: (args && args.mode) || 'development',
-		entry: {
-			main: path.resolve(__dirname, './src/bootstrap/index.tsx'),
-		},
-		resolve: {
-			extensions: ['.tsx', '.ts', '.js'],
-		},
-		module: {
-			rules: [
-				// rules[`tsAndTsx${IS_DEV ? 'Dev' : 'Prod'}`],
-				tsAndTsxProd,
-			],
-		},
-		devServer: {
-			port: '8081',
-			open: 'Chrome',
-			hot: true,
-		},
-	};
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js', '.jsx'],
+	},
+	plugins: [
+		new CopyPlugin({
+			patterns: [
+				{ from: './src/index.html' }
+			]
+		})
+	],
+	devServer: {
+		port: '8081',
+	},
 };
+
+
+module.exports = (env, args) => merge(
+	baseConfigCreator(env, args, { alwaysTs: true }),
+	repoConfig
+);

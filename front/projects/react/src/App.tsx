@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, MuiThemeProvider } from '@material-ui/core';
+import { Provider } from 'react-redux';
+import themesObject from './themes';
+import store from './store';
 import TestComponent from './components/TestComponent';
 
 
-type IProps = {};
-
-const App: React.FC<IProps> = () => {
-  console.log('Test');
-
+const App: React.FC = () => {
+  const [theme, setTheme] = useState('light');
   return (
-    <div>
-      <TestComponent />
-    </div>
+    <MuiThemeProvider theme={themesObject[theme as keyof typeof themesObject]}>
+      <Provider store={store}>
+        <Button
+          color={'primary'}
+          variant={'outlined'}
+        >
+          {'Сменить тему'}
+        </Button>
+        <TestComponent />
+      </Provider>
+    </MuiThemeProvider>
   );
 };
+
 
 export default App;

@@ -5,18 +5,19 @@
     "target": "es6",
     "jsx": "react",
     "outDir": "./dist",
-		"strict": true, 
-		"esModuleInterop": true,
+    "strict": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-		"declaration": true,
+    "declaration": true,
+    "isolatedModules": true
   },
   "exclude": [
-		"webpack.config.base.js",
-		"**/.eslintrc.js",
-		"**/babel.config.js",
-		"**/node_modules",
-		"**/webpack.config.js",
-		"**/.storybook",
+    "webpack.config.base.js",
+    "**/.eslintrc.js",
+    "**/babel.config.js",
+    "**/node_modules",
+    "**/webpack.config.js",
+    "**/.storybook"
   ]
 }
